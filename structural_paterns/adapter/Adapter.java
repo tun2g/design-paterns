@@ -2,12 +2,9 @@ package structural_paterns.adapter;
 
 public class Adapter implements IClient{
 
-    private StringBuilder apiKey;
-
     private CalculateService calculateService;
 
     public Adapter(CalculateService calculateService){
-        this.apiKey = null;
         this.calculateService = calculateService;
     }
 

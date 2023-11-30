@@ -1,8 +1,8 @@
 package structural_paterns.facade;
 
 public class Bank {
-    private ApiKeyManagement apiKeyManagement;
-    private AccountManagement accountManagement;
+    private final ApiKeyManagement apiKeyManagement;
+    private final AccountManagement accountManagement;
 
     public Bank(){
         this.apiKeyManagement = new ApiKeyManagement();
@@ -19,7 +19,7 @@ public class Bank {
     }
 
     public String deposit(AccountBank accountBank, Integer amount){
-        if(this.apiKeyManagement.verifyApiKey(accountBank.getApiKey()) == false){
+        if(!this.apiKeyManagement.verifyApiKey(accountBank.getApiKey())){
             return "failed";
         }
         this.accountManagement.deposit(accountBank,amount);
@@ -27,7 +27,7 @@ public class Bank {
     }
 
     public String withdraw(AccountBank accountBank, Integer amount){
-        if(this.apiKeyManagement.verifyApiKey(accountBank.getApiKey()) == false){
+        if(!this.apiKeyManagement.verifyApiKey(accountBank.getApiKey())){
             return "failed";
         }
         this.accountManagement.deposit(accountBank,amount);
@@ -35,7 +35,7 @@ public class Bank {
     }
 
     public Integer getBalance(AccountBank accountBank){
-        if(this.apiKeyManagement.verifyApiKey(accountBank.getApiKey()) == false){
+        if(!this.apiKeyManagement.verifyApiKey(accountBank.getApiKey())){
             return null;
         }
         return this.accountManagement.getBalance(accountBank);
